@@ -1,0 +1,26 @@
+@model Code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Content/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body style="background-color:#efefef">
+    <div class="container">
+        <form asp-action="index">
+            <div class="row" style="margin-top:100px">
+                <div class="col-6 border p-5 shadow-sm p-3 bg-white rounded mx-auto" >
+                    <div class="form-group">
+                        <input type="text" class="form-control text-uppercase" placeholder="Grup Kodu Giriniz" asp-for="LoginCode">
+                        <span asp-validation-for="LoginCode" class="text-danger"></span>
+                          <button class="btn btn-outline-dark mt-3 btn-block">Giriş</button>
+                    </div>
+                </div> 
+            </div>
+        </form>
+    </div>
+</body>
+</html>
