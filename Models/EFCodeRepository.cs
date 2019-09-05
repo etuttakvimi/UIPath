@@ -16,5 +16,10 @@ namespace UIPath.Models
             _context.Codes.Add(code);
             _context.SaveChanges();
         }
+
+        public Code GetCode(string code)
+        {
+            return _context.Codes.FirstOrDefault(x => x.LoginCode == code);
+        }
     }
 }

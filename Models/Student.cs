@@ -13,5 +13,7 @@ namespace UIPath.Models
         public string Mail { get; set; }
         [Required]
         public string Phone { get; set; }
+        [Required]
+        public string Code { get; set; }
     }
 }

@@ -1,30 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\murat\\Desktop\\UIPath\\UIPath.csproj": {}
+    "/Users/muratvuranok/Desktop/UIPath/UIPath.csproj": {}
   },
   "projects": {
-    "C:\\Users\\murat\\Desktop\\UIPath\\UIPath.csproj": {
+    "/Users/muratvuranok/Desktop/UIPath/UIPath.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\murat\\Desktop\\UIPath\\UIPath.csproj",
+        "projectUniqueName": "/Users/muratvuranok/Desktop/UIPath/UIPath.csproj",
         "projectName": "UIPath",
-        "projectPath": "C:\\Users\\murat\\Desktop\\UIPath\\UIPath.csproj",
-        "packagesPath": "C:\\Users\\murat\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\murat\\Desktop\\UIPath\\obj\\",
+        "projectPath": "/Users/muratvuranok/Desktop/UIPath/UIPath.csproj",
+        "packagesPath": "/Users/muratvuranok/.nuget/packages/",
+        "outputPath": "/Users/muratvuranok/Desktop/UIPath/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\murat\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/muratvuranok/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

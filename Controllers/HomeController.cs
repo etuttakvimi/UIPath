@@ -17,11 +17,16 @@ namespace UIPath.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(Code code)
+        public IActionResult Index(Student student)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index","Register");
+                var code = _codeRepository.GetCode(student.Code);
+                if (code != null)
+                {
+                    return NotFound();
+                }
+                return View("Thanks");
             }
             return View();
         }

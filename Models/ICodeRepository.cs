@@ -2,9 +2,10 @@ using System.Linq;
 
 namespace UIPath.Models
 {
-   public interface ICodeRepository
+    public interface ICodeRepository
     {
         IQueryable<Code> Codes { get; }
         void Add(Code code);
+        Code GetCode(string code);
     }
 }

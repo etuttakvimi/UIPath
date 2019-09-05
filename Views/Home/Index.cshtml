@@ -1,4 +1,4 @@
-@model Code
+@model Student
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +11,46 @@
 <body style="background-color:#efefef">
     <div class="container">
         <form asp-action="index">
-            <div class="row" style="margin-top:100px">
-                <div class="col-6 border p-5 shadow-sm p-3 bg-white rounded mx-auto" >
+            <div class="row border p-5 shadow-sm p-3 mb-5 bg-white rounded" style="margin-top:100px">
+                <div class="col">
                     <div class="form-group">
-                        <input type="text" class="form-control text-uppercase" placeholder="Grup Kodu Giriniz" asp-for="LoginCode">
-                        <span asp-validation-for="LoginCode" class="text-danger"></span>
-                          <button class="btn btn-outline-dark mt-3 btn-block">Giriş</button>
+                        <input type="text" class="form-control" placeholder="Adınız" asp-for="FirstName">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
-                </div> 
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Soyadınız" asp-for="LastName">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Telefon" asp-for="Phone">
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Mail" asp-for="Mail">
+                        <span asp-validation-for="Mail" class="text-danger"></span>
+                    </div>
+                </div>
+
+                       <div class="w-100"></div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Code" asp-for="Code">
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="w-100"></div>
+
+
+                <div class="col d-flex flex-row-reverse">
+                    <button class="btn btn-outline-dark">Kaydet</button>
+                </div>
             </div>
         </form>
     </div>
