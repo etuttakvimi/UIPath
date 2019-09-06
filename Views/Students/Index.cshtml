@@ -1,0 +1,102 @@
+@model IEnumerable<Student>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Students</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'> 
+    <link rel="stylesheet" href="/Content/bootstrap/dist/css/bootstrap.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container">
+<div class="row mt-5">
+    <div class="col">
+        <table class="table" id="example">
+<thead>
+    <tr>
+        <th>
+            Adı
+        </th>
+        <th>Soyadı</th>
+        <th>Telefon</th>
+        <th>Mail</th>
+        <th>Başlama Tarihi</th>
+    </tr>
+</thead>
+
+
+<tbody>
+    @foreach (Student student in Model)
+    {
+        <tr>
+            <td>@student.FirstName</td>
+            <td>@student.LastName</td>
+            <td>@student.Phone</td>
+            <td>@student.Mail</td>
+            <td>@student.StartDate.ToString("dd/MM/yyyy HH:mm")</td>
+        </tr>
+    }
+</tbody>
+        </table>
+    </div>
+</div>
+    </div>
+
+ <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+
+    <script>
+           $(document).ready(function () {
+
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                "iDisplayLength": 10,
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: [0, ':visible']
+                        }
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2]
+                        }
+                    } 
+                ]
+            });
+            $("#example").removeClass().addClass("table table-hover mt-3");
+            $(".dt-button").removeClass().addClass("btn btn-outline-secondary");
+           })
+
+    </script>
+</body>
+</html>

@@ -14,10 +14,10 @@ namespace UIPath
     {
         public static void Main(string[] args)
         {
-            CreateWebHost(args).Run();
+            BuildWebHost(args).Run();
         }
 
-        public static IWebHost CreateWebHost(string[] args) =>
+        public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseDefaultServiceProvider(options => options.ValidateScopes = false)

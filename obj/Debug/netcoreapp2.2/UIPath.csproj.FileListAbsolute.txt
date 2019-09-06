@@ -23,3 +23,4 @@
 /Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/UIPath.dll
 /Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/UIPath.pdb
 /Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/UIPath.csproj.CopyComplete
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Students/Index.g.cshtml.cs

@@ -22,13 +22,18 @@ namespace UIPath.Controllers
             if (ModelState.IsValid)
             {
                 var code = _codeRepository.GetCode(student.Code);
-                if (code != null)
+                if (code == null)
                 {
                     return NotFound();
                 }
+                student.FirstName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(student.FirstName);
+                student.LastName = student.LastName.ToUpper();
+                student.Mail = student.Mail.ToLower();
+                
+                _studentRepository.Add(student);
                 return View("Thanks");
             }
-            return View();
+            return View(student);
         }
     }
 }
