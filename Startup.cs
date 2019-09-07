@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Newtonsoft.Json.Serialization;
 using UIPath.Models;
 
 namespace UIPath
@@ -27,8 +28,11 @@ namespace UIPath
         {
             services.AddDbContext<ProjectContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConntection")));
             services.AddTransient<IStudentRepository, EFStudentRepository>();
-            services.AddTransient<ICodeRepository,    EFCodeRepository>();
-            services.AddMvc();
+            services.AddTransient<ICodeRepository, EFCodeRepository>();
+            services.AddMvc().AddJsonOptions(options =>
+                 {
+                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                 }); ;
             services.AddDirectoryBrowser();
         }
 
@@ -36,11 +40,11 @@ namespace UIPath
         {
 
             app.UseStaticFiles(); // wwwroot
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "node_modules")),
-                RequestPath = "/Content"
-            });
+            // app.UseStaticFiles(new StaticFileOptions
+            // {
+            //     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "node_modules")),
+            //     RequestPath = "/Content"
+            // });
 
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {

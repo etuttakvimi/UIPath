@@ -6,5 +6,6 @@ namespace UIPath.Models
     {
         IQueryable<Student> Students { get; }
         void Add(Student student);
+        bool Delete(int id);
     } 
 }

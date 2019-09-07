@@ -2959,6 +2959,32 @@
     "CSharpLanguageVersion": 800
   },
   "RootNamespace": "UIPath",
-  "Documents": [],
+  "Documents": [
+    {
+      "FilePath": "Views/Home/Error.cshtml",
+      "TargetPath": "Views/Home/Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/_ViewImports.cshtml",
+      "TargetPath": "Views/_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Home/Index.cshtml",
+      "TargetPath": "Views/Home/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Home/Thanks.cshtml",
+      "TargetPath": "Views/Home/Thanks.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Students/Index.cshtml",
+      "TargetPath": "Views/Students/Index.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
   "SerializationFormat": "0.2"
 }

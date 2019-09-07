@@ -17,5 +17,13 @@ namespace UIPath.Models
             _context.Students.Add(student);
             _context.SaveChanges();
         }
-    } 
+
+        public bool Delete(int id)
+        {
+            _context.Students.Remove(_context.Students.Find(id));
+            return _context.SaveChanges() > 0;
+        }
+
+
+    }
 }

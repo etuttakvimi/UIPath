@@ -24,12 +24,12 @@ namespace UIPath.Controllers
                 var code = _codeRepository.GetCode(student.Code);
                 if (code == null)
                 {
-                    return NotFound();
+                    return View("Error");
                 }
                 student.FirstName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(student.FirstName);
                 student.LastName = student.LastName.ToUpper();
                 student.Mail = student.Mail.ToLower();
-                
+
                 _studentRepository.Add(student);
                 return View("Thanks");
             }
