@@ -56,9 +56,50 @@ namespace UIPath.Migrations
 
                     b.Property<DateTime>("StartDate");
 
+                    b.Property<string>("TCKN")
+                        .IsRequired();
+
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("UIPath.Models.UIPathStudent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Brans");
+
+                    b.Property<string>("CourseEndDate");
+
+                    b.Property<string>("CourseStartDate");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<bool>("IsStudent");
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
+
+                    b.Property<string>("Mail")
+                        .IsRequired();
+
+                    b.Property<string>("Phone")
+                        .IsRequired();
+
+                    b.Property<int>("Seans");
+
+                    b.Property<string>("TCKN")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UIPathStudents");
                 });
 #pragma warning restore 612, 618
         }

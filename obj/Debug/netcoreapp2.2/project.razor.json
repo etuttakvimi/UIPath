@@ -2961,6 +2961,11 @@
   "RootNamespace": "UIPath",
   "Documents": [
     {
+      "FilePath": "Views/Students/Error.cshtml",
+      "TargetPath": "Views/Students/Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Home/Error.cshtml",
       "TargetPath": "Views/Home/Error.cshtml",
       "FileKind": "mvc"
@@ -2981,8 +2986,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views/_ViewStart.cshtml",
+      "TargetPath": "Views/_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Students/Index.cshtml",
       "TargetPath": "Views/Students/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Students/Create.cshtml",
+      "TargetPath": "Views/Students/Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Students/List.cshtml",
+      "TargetPath": "Views/Students/List.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Shared/_Layout.cshtml",
+      "TargetPath": "Views/Shared/_Layout.cshtml",
       "FileKind": "mvc"
     }
   ],

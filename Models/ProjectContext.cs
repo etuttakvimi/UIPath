@@ -11,5 +11,6 @@ namespace UIPath.Models
         }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Code> Codes { get; set; }
+        public virtual DbSet<UIPathStudent> UIPathStudents { get; set; }
     }
 }

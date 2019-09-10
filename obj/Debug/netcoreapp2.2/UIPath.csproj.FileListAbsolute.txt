@@ -25,3 +25,8 @@
 /Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/UIPath.csproj.CopyComplete
 /Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Students/Index.g.cshtml.cs
 /Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Home/Error.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Students/Create.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Students/Error.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Students/List.g.cshtml.cs

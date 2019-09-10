@@ -1,28 +1,10 @@
-@model IEnumerable<Student>
-
-
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Students</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-
-
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css"
-            rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="row mt-5">
+     <div class="row mb-5">
+           <div class="col d-flex justify-content-start">
+            <a href="/Students/List" class="btn btn-outline-info   mr-2"><i class="fa fa-list"></i> Öğrenci Listesi</a>
+        </div>
+      
+    </div>
+            <div class="row"> 
                 <div class="col">
                     <table class="table" id="example">
                         <thead>
@@ -32,7 +14,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -46,8 +28,7 @@
         <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 
-        <script>
-            $(document).ready(function () {
+        <script>$(document).ready(function () {
                 $("#example").DataTable({
                     ajax: {
                         url: '/Students/_Index',
@@ -59,16 +40,19 @@
                     columns: [
                         { "title": "Adı", data: "Adi" },
                         { "title": "Soyadı", data: "Soyadi" },
+                        { "title": "TCKN", data: "TCKN" },
                         { "title": "Telefon", data: "Telefon" },
-                        { "title": "Mail", data: "Mail" } ,
-                        { "title": "#", "mRender": function (data, type, row) {
-                   
-                         return "<a data-id='"+row.ID+"' href='#' class='btn btn-sm btn-outline-danger'><i class='fa fa-trash'></i></a>";
-                }
-            }
+                        { "title": "Mail", data: "Mail" },
+                     
+                         {
+                            "title": "#", "mRender": function (data, type, row) {
+
+                                return "<a data-id='" + row.ID + "' href='#' class='btn btn-sm btn-outline-danger'><i class='fa fa-trash'></i></a>";
+                            }
+                        }
                     ],
                     dom: 'Bfrtip',
-                    "iDisplayLength": 10,
+                    "iDisplayLength": 5,
                     buttons: [
                         {
                             extend: 'copyHtml5',
@@ -91,26 +75,26 @@
 
                 $("#example").removeClass().addClass("table table-hover mt-3");
                 $(".dt-button").removeClass().addClass("btn btn-outline-secondary");
-            })
-        </script>
+            })</script>
 
 
         <script>
-            $(document).on("click", ".btn-outline-danger", function(){
+            $(document).on("click", ".btn-outline-danger", function () {
 
-               
-    var id = $(this).data("id");
-    $.ajax({
-        url:"/Students/_Delete/"+id,
-        dataType :"json",
-        type :"post",
-        success :function(result){
-var table = $("#example").DataTable();
-table.ajax.reload();
-        }
-    })
+
+                var id = $(this).data("id");
+                $.ajax({
+                    url: "/Students/_Delete/" + id,
+                    dataType: "json",
+                    type: "post",
+                    success: function (result) {
+                        var table = $("#example").DataTable();
+                        table.ajax.reload();
+                    }
+                })
             })
         </script>
-    </body>
-
-    </html>
+      @section css{ 
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+   }

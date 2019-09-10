@@ -29,6 +29,7 @@ namespace UIPath
             services.AddDbContext<ProjectContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConntection")));
             services.AddTransient<IStudentRepository, EFStudentRepository>();
             services.AddTransient<ICodeRepository, EFCodeRepository>();
+            services.AddTransient<IUIpathStudentRepository, EFUIpathStudentRepository>();
             services.AddMvc().AddJsonOptions(options =>
                  {
                      options.SerializerSettings.ContractResolver = new DefaultContractResolver();

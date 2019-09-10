@@ -1,4 +1,7 @@
-
+@model string
+@{
+  Layout = null;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +21,7 @@
 <div class="notfound">
 <div class="notfound-404">
 <h1>Oops!</h1>
-<h2>404 - The Page can't be found</h2>
+<h2>403 - @Model</h2>
 </div>
 <a href="/">Anasayfa</a>
 </div>

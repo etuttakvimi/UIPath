@@ -1,32 +1,7 @@
 @model Student
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-       <link rel="stylesheet" href="/css/bootstrap.min.css">
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
  
-    <script>
-        $(window).load(function()
-{
-   var phones = [{ "mask": "+\\9\\0 (###) ### ## ##"} ];
-    $('#Phone').inputmask({ 
-        mask: phones, 
-        greedy: false, 
-        definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
-});
-    </script>
-
- 
-</head>
-<body style="background-color:#efefef">
-    <div class="container">
-        <form asp-action="index">
-            <div class="row border p-5 shadow-sm p-3 mb-5 bg-white rounded" style="margin-top:100px">
+        <form asp-action="index" method="post">
+           <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Adınız" asp-for="FirstName">
@@ -36,7 +11,7 @@
                 <div class="col">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Soyadınız" asp-for="LastName">
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="w-100"></div>
@@ -52,8 +27,14 @@
                         <span asp-validation-for="Mail" class="text-danger"></span>
                     </div>
                 </div>
-
-                       <div class="w-100"></div>
+                   <div class="w-100"></div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="TCKN" asp-for="TCKN" >
+                        <span asp-validation-for="TCKN" class="text-danger" ></span>
+                    </div>
+                </div>
+                     
                 <div class="col">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Code" asp-for="Code">
@@ -64,10 +45,25 @@
 
 
                 <div class="col d-flex flex-row-reverse">
-                    <button class="btn btn-outline-dark">Kaydet</button>
+                         <button class="btn btn-outline-dark"> <i class="fa fa-pencil"></i> Kaydet</button>
                 </div>
-            </div>
+           </div>
         </form>
-    </div>
-</body>
-</html>
+  
+
+
+  @section js{
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
+    <script>
+        $(window).load(function () {
+            var phones = [{ "mask": "+\\9\\0 (###) ### ## ##" }];
+            $('#Phone').inputmask({
+                mask: phones,
+                greedy: false,
+                definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
+            });
+        });
+    </script>
+}

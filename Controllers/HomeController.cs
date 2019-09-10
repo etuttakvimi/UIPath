@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using UIPath.Models;
 
@@ -24,8 +25,19 @@ namespace UIPath.Controllers
                 var code = _codeRepository.GetCode(student.Code);
                 if (code == null)
                 {
-                    return View("Error");
+                    return View("Error", "Geçeris Kod!");
                 }
+
+                if (_studentRepository.Students.Any(x => x.Phone == student.Phone))
+                {
+                    return View("Error", "Telefon Numarası Daha Önce Kaydedilmiştir!");
+                }
+                if (_studentRepository.Students.Any(x => x.Mail == student.Mail))
+                {
+                    return View("Error", "Mail Adresi Daha Önce Kaydedilmiştir!");
+                }
+
+
                 student.FirstName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(student.FirstName);
                 student.LastName = student.LastName.ToUpper();
                 student.Mail = student.Mail.ToLower();
