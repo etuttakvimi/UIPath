@@ -53,7 +53,8 @@ namespace UIPath.Controllers
                 Brans = x.Brans,
                 Seans = x.Seans,
                 StartDate = x.CourseStartDate,
-                EndDate =x.CourseEndDate
+                EndDate = x.CourseEndDate,
+                IsStudent = x.IsStudent
             }).ToList();
             return Json(students);
         }
@@ -101,6 +102,31 @@ namespace UIPath.Controllers
         {
             bool result = _uipathStudentRepository.Delete(id);
             return Json(result);
+        }
+
+
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            var student = _uipathStudentRepository.GetById(id);
+            return View(student);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(UIPathStudent student)
+        {
+            if (ModelState.IsValid)
+            {
+                student.FirstName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(student.FirstName);
+                student.LastName = student.LastName.ToUpper();
+                student.Mail = student.Mail.ToLower();
+
+                _uipathStudentRepository.Update(student);
+
+                return RedirectToAction("List");
+            }
+            return View(student);
         }
     }
 }

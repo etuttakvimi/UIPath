@@ -25,7 +25,7 @@ namespace UIPath.Controllers
                 var code = _codeRepository.GetCode(student.Code);
                 if (code == null)
                 {
-                    return View("Error", "Geçeris Kod!");
+                    return View("Error", "Geçeriz Kod!");
                 }
 
                 if (_studentRepository.Students.Any(x => x.Phone == student.Phone))

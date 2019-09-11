@@ -2966,6 +2966,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views/Students/Edit.cshtml",
+      "TargetPath": "Views/Students/Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Home/Error.cshtml",
       "TargetPath": "Views/Home/Error.cshtml",
       "FileKind": "mvc"

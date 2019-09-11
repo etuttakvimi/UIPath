@@ -23,6 +23,17 @@ namespace UIPath.Models
         {
             _context.UIPathStudents.Remove(_context.UIPathStudents.Find(id));
             return _context.SaveChanges() > 0;
-        } 
+        }
+
+        public UIPathStudent GetById(int? id)
+        {
+            return _context.UIPathStudents.Find(id);
+        }
+
+        public void Update(UIPathStudent student)
+        {
+            _context.Entry(student).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+        }
     }
 }

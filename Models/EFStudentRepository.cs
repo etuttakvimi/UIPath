@@ -24,6 +24,9 @@ namespace UIPath.Models
             return _context.SaveChanges() > 0;
         }
 
-
+        public Student GetById(int? id)
+        {
+            return _context.Students.Find(id);
+        }
     }
 }
