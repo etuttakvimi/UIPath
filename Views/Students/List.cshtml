@@ -1,19 +1,70 @@
 <div class="row mb-5">
     <div class="col d-flex justify-content-start">
-        <a href="/Students/Index" class="btn btn-outline-info   mr-2"><i class="fa fa-list"></i> Kayıtlı Öğrenciler</a>
+        <a href="/Students/Index" class="btn btn-outline-info   mr-2"><i class="fa fa-list"></i> Dersi Devam Eden Öğrenciler</a>
+             <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter">
+        <span class="fa fa-filter"></span>
+        Filter
+    </button>
     </div>
     <div class="col d-flex justify-content-end">
         <a href="/Students/Create" class="btn btn-outline-success   mr-2"><i class="fa fa-pencil"></i> Yeni Ekle</a>
-    </div>
+   
+      </div>
 </div>
 <div class="row">
     <div class="col">
-        <table class="table" id="example">
-            <thead>
+        <table class="table shadow-sm" id="example">
+            <thead class="thead-dark">
             </thead>
             <tbody>
             </tbody>
         </table>
+    </div>
+</div>
+ 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Zümre</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">  
+                <div class="row ml-4"> 
+                        <div class="col-3 my-1 mt-1 ">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" value="yazilim" class="custom-control-input zumre" id="yazilim">
+                                <label class="custom-control-label" for="yazilim">Yazılım</label>
+                            </div>
+                        </div>
+                    <div class="col-3 my-1 mt-1 ">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" value="muhasebe" class="custom-control-input zumre" id="muhasebe">
+                                <label class="custom-control-label" for="muhasebe">Muhasebe</label>
+                            </div>
+                        </div>
+                          <div class="col-3 my-1 mt-1 ">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" value="sistem" class="custom-control-input zumre" id="sistem">
+                                <label class="custom-control-label" for="sistem">Sistem</label>
+                            </div>
+                        </div>
+                          <div class="col-3 my-1 mt-1 ">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" value="ofis" class="custom-control-input zumre" id="ofis">
+                                <label class="custom-control-label" for="ofis">Ofis</label>
+                            </div>
+                        </div> 
+                </div> 
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+ 
     </div>
 </div>
 
@@ -30,7 +81,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-
+ <script src="/js/colVis.js"></script>
 <script>
     $(document).ready(function () {
         $("#example").DataTable({
@@ -101,12 +152,42 @@
                 {
                     extend: 'pdfHtml5'
 
-                }
+                },
+                          'colvis'
             ]
         });
 
         $("#example").removeClass().addClass("table table-hover mt-3");
         $(".dt-button").removeClass().addClass("btn btn-outline-secondary");
+
+             var itemList = [];
+            var oTable = $('#example').dataTable();
+            $('.zumre').on("click", function (e) {
+                var items = document.getElementsByClassName("zumre");
+                itemList = [];
+                $.each(items, function (key, value) {
+                    if ($(value).is(':checked')) {
+                        itemList.push($(value).val())
+                    }
+                })
+                oTable.fnDraw();
+            });
+
+            $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+                var checked = $('.zumre').is(':checked');
+
+                console.log(itemList)
+
+                if (checked && itemList.includes(aData[6])) {
+                    return true;
+                }
+
+                if (!checked) {
+                    return true;
+                }
+
+                return false;
+            });
     })
 </script>
 
@@ -133,4 +214,9 @@
 @section css{
 <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <style>
+        .modal-dialog {
+            max-width: 1300px !important;
+        }
+    </style>
 }

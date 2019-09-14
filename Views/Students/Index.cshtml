@@ -7,7 +7,7 @@
             <div class="row"> 
                 <div class="col">
                     <table class="table" id="example">
-                        <thead>
+                     <thead class="thead-dark">
                         </thead>
                         <tbody>
                         </tbody>
@@ -27,7 +27,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-
+        <script src="/js/colVis.js"></script>
         <script>$(document).ready(function () {
                 $("#example").DataTable({
                     ajax: {
@@ -69,7 +69,8 @@
                         {
                             extend: 'pdfHtml5'
 
-                        }
+                        },
+                          'colvis'
                     ]
                 });
 

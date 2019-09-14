@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{63F4D3CB-ECA7-40C4-8E4B-DC7A0E647E7F}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/HomeController.cs">
     <Files>
-      <File FileName="Controllers/StudentsController.cs" Line="70" Column="1" />
-      <File FileName="Views/Students/Create.cshtml" />
-      <File FileName="Views/Students/Index.cshtml" Line="47" Column="27" />
-      <File FileName="Models/Student.cs" Line="29" Column="2" />
-      <File FileName="Controllers/HomeController.cs" Line="26" Column="1" />
-      <File FileName="Views/Home/Index.cshtml" Line="33" Column="99" />
+      <File FileName="Controllers/StudentsController.cs" Line="85" Column="1" />
+      <File FileName="Models/UIPathStudent.cs" Line="1" Column="1" />
+      <File FileName="Models/Student.cs" Line="1" Column="1" />
+      <File FileName="Views/Home/Thanks.cshtml" Line="1" Column="1" />
+      <File FileName="Views/Students/Error.cshtml" Line="1" Column="1" />
+      <File FileName="Controllers/HomeController.cs" Line="28" Column="50" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
