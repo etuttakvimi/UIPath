@@ -80,6 +80,16 @@
                 <span asp-validation-for="CourseEndDate" class="text-danger"></span>
             </div>
         </div>
+
+             <div class="w-100"></div>
+        <div class="col-6">
+            <div class="form-group">
+            <select asp-for="GroupId" class="form-control" asp-items="@ViewBag.GroupId">
+                <option  disabled>Grup Seçiniz</option> 
+            </select>
+                <span asp-validation-for="GroupId" class="text-danger"></span>
+            </div>
+        </div> 
     </div>
 
 

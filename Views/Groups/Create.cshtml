@@ -1,0 +1,75 @@
+@model Group
+<form asp-action="Create">
+    <div class="row">
+    
+        <div class="col">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Grup Adı" asp-for="GroupName">
+                <span asp-validation-for="GroupName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Sınıf" asp-for="LabName">
+                <span asp-validation-for="LabName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="w-100"></div>
+        
+            <div class="col">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Başlangıç" asp-for="StartDate"
+                        maxlength="11">
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+            </div>
+        
+        <div class="col">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Bitiş" asp-for="EndDate" maxlength="11">
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+        </div>
+
+    <div class="w-100"></div>
+        <div class="col-6">
+            <div class="form-group">
+            <select asp-for="ConsultantId" class="form-control" asp-items="@ViewBag.ConsultantId">
+                <option>Danışman Seçiniz</option>
+ 
+            </select>
+                <span asp-validation-for="ConsultantId" class="text-danger"></span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="w-100"></div>
+
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-between">
+            <a href="/Groups/Index" class="btn btn-outline-info"><i class="fa fa-list"></i> Liste</a>
+            <button type="submit" class="btn btn-outline-dark"> <i class="fa fa-pencil"></i> Kaydet</button>
+        </div>
+    </div>
+</form>
+
+
+ @section css{
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+@section js{
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+ 
+<script>
+    $(function () {
+        $("#StartDate").datepicker({ "dateFormat": "dd/mm/yy" });
+        $("#EndDate").datepicker({ "dateFormat": "dd/mm/yy" });
+    });
+</script>
+
+}

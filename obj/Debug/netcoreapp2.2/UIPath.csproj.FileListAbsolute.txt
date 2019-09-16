@@ -31,3 +31,9 @@
 /Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs
 /Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Students/List.g.cshtml.cs
 /Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Students/Edit.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Groups/Create.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Groups/Edit.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Groups/Index.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Consultants/Index.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Consultants/Create.g.cshtml.cs
+/Users/muratvuranok/Desktop/UIPath/obj/Debug/netcoreapp2.2/Razor/Views/Consultants/Edit.g.cshtml.cs

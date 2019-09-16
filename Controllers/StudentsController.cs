@@ -3,22 +3,29 @@ namespace UIPath.Controllers
     using System;
     using System.Linq;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using UIPath.Models;
+    using UIPath.Services;
+
     public class StudentsController : Controller
-    {
-        private IStudentRepository _studentRepository;
+    { 
         private ICodeRepository _codeRepository;
+        private IGroupRepository _groupRepository;
+        private IStudentRepository _studentRepository;
         private IUIpathStudentRepository _uipathStudentRepository;
-        public StudentsController(IStudentRepository studentRepository, ICodeRepository codeRepository, IUIpathStudentRepository uIpathStudentRepository)
+        public StudentsController(IStudentRepository studentRepository, ICodeRepository codeRepository, IUIpathStudentRepository uipathStudentRepository, IGroupRepository groupRepository)
         {
             this._studentRepository = studentRepository;
             this._codeRepository = codeRepository;
-            this._uipathStudentRepository = uIpathStudentRepository;
+            this._uipathStudentRepository = uipathStudentRepository;
+            this._groupRepository = groupRepository;
         }
+
         public IActionResult Index()
         {
             return View();
         }
+
         [HttpGet]
         public JsonResult _Index()
         {
@@ -39,6 +46,7 @@ namespace UIPath.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public JsonResult _List()
         {
@@ -59,9 +67,9 @@ namespace UIPath.Controllers
             return Json(students);
         }
 
-
         public IActionResult Create()
         {
+            ViewBag.GroupId = new SelectList(_groupRepository.Groups, "Id", "GroupName");
             return View();
         }
 
@@ -104,12 +112,11 @@ namespace UIPath.Controllers
             return Json(result);
         }
 
-
-
         [HttpGet]
         public IActionResult Edit(int? id)
         {
             var student = _uipathStudentRepository.GetById(id);
+            ViewBag.GroupId = new SelectList(_groupRepository.Groups, "Id", "GroupName");
             return View(student);
         }
 
@@ -126,6 +133,7 @@ namespace UIPath.Controllers
 
                 return RedirectToAction("List");
             }
+            ViewBag.GroupId = new SelectList(_groupRepository.Groups, "Id", "GroupName");
             return View(student);
         }
     }

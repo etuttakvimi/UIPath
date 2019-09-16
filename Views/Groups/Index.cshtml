@@ -1,21 +1,69 @@
 <div class="row mb-5">
-    <div class="col d-flex justify-content-start">
-        <a href="/Students/Index" class="btn btn-outline-info   mr-2"><i class="fa fa-list"></i> Kayıtlı Öğrenciler</a>
-    </div>
+  
     <div class="col d-flex justify-content-end">
-        <a href="/Students/Create" class="btn btn-outline-success   mr-2"><i class="fa fa-pencil"></i> Yeni Ekle</a>
+        <a href="/Groups/Create" class="btn btn-outline-success   mr-2"><i class="fa fa-pencil"></i> Yeni Ekle</a>
+
     </div>
 </div>
 <div class="row">
     <div class="col">
-        <table class="table" id="example">
-            <thead>
+        <table class="table shadow-sm" id="example">
+            <thead class="thead-dark">
             </thead>
             <tbody>
             </tbody>
         </table>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Zümre</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row ml-4">
+                    <div class="col-3 my-1 mt-1 ">
+                        <div class="custom-control custom-checkbox mr-sm-2">
+                            <input type="checkbox" value="yazilim" class="custom-control-input zumre" id="yazilim">
+                            <label class="custom-control-label" for="yazilim">Yazılım</label>
+                        </div>
+                    </div>
+                    <div class="col-3 my-1 mt-1 ">
+                        <div class="custom-control custom-checkbox mr-sm-2">
+                            <input type="checkbox" value="muhasebe" class="custom-control-input zumre" id="muhasebe">
+                            <label class="custom-control-label" for="muhasebe">Muhasebe</label>
+                        </div>
+                    </div>
+                    <div class="col-3 my-1 mt-1 ">
+                        <div class="custom-control custom-checkbox mr-sm-2">
+                            <input type="checkbox" value="sistem" class="custom-control-input zumre" id="sistem">
+                            <label class="custom-control-label" for="sistem">Sistem</label>
+                        </div>
+                    </div>
+                    <div class="col-3 my-1 mt-1 ">
+                        <div class="custom-control custom-checkbox mr-sm-2">
+                            <input type="checkbox" value="ofis" class="custom-control-input zumre" id="ofis">
+                            <label class="custom-control-label" for="ofis">Ofis</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section js{
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -29,39 +77,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-
+<script src="/js/colVis.js"></script>
 <script>
     $(document).ready(function () {
         $("#example").DataTable({
             ajax: {
-                url: '/Students/_List',
+                url: '/Groups/_Index',
                 dataSrc: '',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 type: 'GET'
             },
             columns: [
-                { "title": "Adı", data: "Adi" },
-                { "title": "Soyadı", data: "Soyadi" },
-                { "title": "TCKN", data: "TCKN" },
-                { "title": "Telefon", data: "Telefon" },
-                { "title": "Mail", data: "Mail" },
-                { "title": "Seans", data: "Seans" },
-                { "title": "Zümre", data: "Brans" },
-                { "title": "Başlangıç", data: "StartDate" },
-                { "title": "Bitiş", data: "EndDate" },
-                {
-                    "title": "Öğrenci", "mRender": function (data, type, row) {
-                        var css = "";
-                        if (row.IsStudent == true) {
-                            css = "success";
-                        }
-                        else {
-                            css = "danger";
-                        }
-                        return "<a href='#' class='disabled btn-sm btn btn-outline-" + css + "'> <i class='fa fa-user'><i/> </a>";
-                    }
-                },
+                { "title": "Grup Adı", data: "GroupName" },
+                { "title": "Eğitmen", data: "Consultant" },
+                { "title": "Başlangıç Tarihi", data: "StartDate" },
+                { "title": "Bitiş Tarihi", data: "EndDate" },
+                { "title": "Öğrenci Sayısı", data: "StudentsCount" }, 
                 {
                     "title": "#", "mRender": function (data, type, row) {
 
@@ -71,8 +103,9 @@
    <i class="fa fa-cogs"> </i>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a data-id='`+ row.ID + `' class="dropdown-item edit" href="#"><i class="fa fa-search"></i> &nbsp; Detay</a> 
-    <a data-id='`+ row.ID + `' class="dropdown-item edit" href="#"><i class="fa fa-pencil"></i> &nbsp; Düzenle</a> 
+ 
+    <a data-id='`+ row.ID + `' class="dropdown-item edit" href="/Groups/Edit/` + row.ID + `"><i class="fa fa-pencil"></i> &nbsp; Düzenle</a> 
+    <a data-id='`+ row.ID + `' class="dropdown-item edit" href="/Groups/Edit/` + row.ID + `"><i class="fa fa fa-users"></i> &nbsp; Öğrenciler</a> 
     <a data-id='`+ row.ID + `' class="dropdown-item delete" href="#"><i class="fa fa-trash"></i> &nbsp; Sil</a> 
   </div>
 </div>
@@ -100,23 +133,22 @@
                 {
                     extend: 'pdfHtml5'
 
-                }
+                },
+                'colvis'
             ]
         });
 
         $("#example").removeClass().addClass("table table-hover mt-3");
-        $(".dt-button").removeClass().addClass("btn btn-outline-secondary");
+        $(".dt-button").removeClass().addClass("btn btn-outline-secondary");  
     })
 </script>
 
 
 <script>
     $(document).on("click", ".delete", function () {
-
-
         var id = $(this).data("id");
         $.ajax({
-            url: "/Students/_Remove/" + id,
+            url: "/Groups/_Remove/" + id,
             dataType: "json",
             type: "post",
             success: function (result) {
@@ -125,17 +157,22 @@
             }
         })
     })
+</script>
 
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity = "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin = "anonymous" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-</script>
+}
+
 @section css{
 <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<style>
+    .modal-dialog {
+        max-width: 1300px !important;
+    }
+</style>
 }

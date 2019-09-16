@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json.Serialization;
 using UIPath.Models;
+using UIPath.Models.Context;
+using UIPath.Services;
 
 namespace UIPath
 {
@@ -27,9 +29,13 @@ namespace UIPath
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ProjectContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConntection")));
-            services.AddTransient<IStudentRepository, EFStudentRepository>();
+
             services.AddTransient<ICodeRepository, EFCodeRepository>();
+            services.AddTransient<IGroupRepository, EFGroupRepository>();
+            services.AddTransient<IStudentRepository, EFStudentRepository>();
+            services.AddTransient<IConsultanRepository, EFConsultantRepository>();
             services.AddTransient<IUIpathStudentRepository, EFUIpathStudentRepository>();
+ 
             services.AddMvc().AddJsonOptions(options =>
                  {
                      options.SerializerSettings.ContractResolver = new DefaultContractResolver();

@@ -2971,8 +2971,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views/Consultants/Edit.cshtml",
+      "TargetPath": "Views/Consultants/Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Home/Error.cshtml",
       "TargetPath": "Views/Home/Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Consultants/Create.cshtml",
+      "TargetPath": "Views/Consultants/Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -2991,6 +3001,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views/Groups/Create.cshtml",
+      "TargetPath": "Views/Groups/Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Consultants/Index.cshtml",
+      "TargetPath": "Views/Consultants/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/_ViewStart.cshtml",
       "TargetPath": "Views/_ViewStart.cshtml",
       "FileKind": "mvc"
@@ -3001,6 +3021,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views/Groups/Edit.cshtml",
+      "TargetPath": "Views/Groups/Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Students/Create.cshtml",
       "TargetPath": "Views/Students/Create.cshtml",
       "FileKind": "mvc"
@@ -3008,6 +3033,11 @@
     {
       "FilePath": "Views/Students/List.cshtml",
       "TargetPath": "Views/Students/List.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Groups/Index.cshtml",
+      "TargetPath": "Views/Groups/Index.cshtml",
       "FileKind": "mvc"
     },
     {

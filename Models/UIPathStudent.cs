@@ -7,7 +7,7 @@ namespace UIPath.Models
     {
         public UIPathStudent()
         {
-            this.CreatedDate = DateTime.Now; 
+            this.CreatedDate = DateTime.Now;
         }
         public int Id { get; set; }
         [Required(ErrorMessage = "Lütfen adınızı giriniz!")]
@@ -23,10 +23,13 @@ namespace UIPath.Models
         public DateTime CreatedDate { get; set; }
         public int Seans { get; set; }
         public string Brans { get; set; }
-    
+
         public string TCKN { get; set; }
         public string CourseStartDate { get; set; }
-        public string  CourseEndDate { get; set; }
+        public string CourseEndDate { get; set; }
         public bool IsStudent { get; set; }
+
+        public int? GroupId { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

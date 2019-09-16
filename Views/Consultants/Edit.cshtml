@@ -1,0 +1,41 @@
+@model Consultant
+<form asp-action="Edit">
+    <div class="row"> 
+        <div class="col">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Adı" asp-for="FirstName">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Soyadı" asp-for="LastName">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="w-100"></div> 
+    </div> 
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-between">
+            <a href="/Students/List" class="btn btn-outline-info"><i class="fa fa-list"></i> Liste</a>
+            <button type="submit" class="btn btn-outline-dark"> <i class="fa fa-pencil"></i> Kaydet</button>
+        </div>
+    </div>
+</form> 
+@section css{
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+@section js{
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+ 
+<script>
+    $(function () {
+        $("#CourseStartDate").datepicker({ "dateFormat": "dd/mm/yy" });
+        $("#CourseEndDate").datepicker({ "dateFormat": "dd/mm/yy" });
+    });
+</script>
+
+}

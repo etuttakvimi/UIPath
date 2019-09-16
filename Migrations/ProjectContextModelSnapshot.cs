@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UIPath.Models;
+using UIPath.Models.Context;
 
 namespace UIPath.Migrations
 {
@@ -31,6 +31,47 @@ namespace UIPath.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Codes");
+                });
+
+            modelBuilder.Entity("UIPath.Models.Consultant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Consultants");
+                });
+
+            modelBuilder.Entity("UIPath.Models.Group", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ConsultantId");
+
+                    b.Property<string>("EndDate");
+
+                    b.Property<string>("GroupName")
+                        .IsRequired();
+
+                    b.Property<string>("LabName");
+
+                    b.Property<string>("StartDate");
+
+                    b.Property<int>("Statu");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConsultantId");
+
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("UIPath.Models.Student", b =>
@@ -80,6 +121,8 @@ namespace UIPath.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired();
 
+                    b.Property<int?>("GroupId");
+
                     b.Property<bool>("IsStudent");
 
                     b.Property<string>("LastName")
@@ -97,7 +140,23 @@ namespace UIPath.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GroupId");
+
                     b.ToTable("UIPathStudents");
+                });
+
+            modelBuilder.Entity("UIPath.Models.Group", b =>
+                {
+                    b.HasOne("UIPath.Models.Consultant", "Consultant")
+                        .WithMany("Groups")
+                        .HasForeignKey("ConsultantId");
+                });
+
+            modelBuilder.Entity("UIPath.Models.UIPathStudent", b =>
+                {
+                    b.HasOne("UIPath.Models.Group", "Group")
+                        .WithMany("Students")
+                        .HasForeignKey("GroupId");
                 });
 #pragma warning restore 612, 618
         }

@@ -34,7 +34,7 @@
         <div class="col">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Soyadı" asp-for="LastName">
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
         </div>
         <div class="w-100"></div>
@@ -80,10 +80,18 @@
                 <span asp-validation-for="CourseEndDate" class="text-danger"></span>
             </div>
         </div>
-    </div>
-
-
-    <div class="w-100"></div>
+  
+     <div class="w-100"></div>
+        <div class="col-6">
+            <div class="form-group">
+            <select asp-for="GroupId" class="form-control" asp-items="@ViewBag.GroupId">
+                <option  disabled>Grup Seçiniz</option> 
+            </select>
+                <span asp-validation-for="GroupId" class="text-danger"></span>
+            </div>
+        </div> 
+  </div>
+ 
 
     <div class="row mt-4">
         <div class="col d-flex justify-content-between">
