@@ -1,6 +1,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using UIPath.Models;
+using UIPath.Services;
 
 namespace UIPath.Controllers
 {
@@ -8,10 +9,14 @@ namespace UIPath.Controllers
     {
         private IStudentRepository _studentRepository;
         private ICodeRepository _codeRepository;
-        public HomeController(IStudentRepository studentRepository, ICodeRepository codeRepository)
+        private IGroupRepository _groupRepository;
+        private IUIpathStudentRepository _uipathStudentRepository;
+        public HomeController(IStudentRepository studentRepository, ICodeRepository codeRepository, IGroupRepository groupRepository, IUIpathStudentRepository uipathStudentRepository)
         {
             this._studentRepository = studentRepository;
             this._codeRepository = codeRepository;
+            this._groupRepository = groupRepository;
+            this._uipathStudentRepository = uipathStudentRepository;
         }
         public IActionResult Index()
         {
@@ -22,7 +27,7 @@ namespace UIPath.Controllers
         {
             if (ModelState.IsValid)
             {
-                var code = _codeRepository.GetCode(student.Code);
+                var code = _groupRepository.Groups.FirstOrDefault(x => x.GroupName == student.Code);
                 if (code == null)
                 {
                     return View("Error", "Geçeriz Kod!");
@@ -43,6 +48,18 @@ namespace UIPath.Controllers
                 student.Mail = student.Mail.ToLower();
 
                 _studentRepository.Add(student);
+
+
+
+                var uipathStudent = _uipathStudentRepository.Students.FirstOrDefault(x => x.Phone == student.Phone && x.FirstName == student.FirstName && x.LastName == student.LastName);
+
+
+                if (uipathStudent != null)
+                {
+                    uipathStudent.TCKN = student.TCKN;
+                    _uipathStudentRepository.Update(uipathStudent);
+                }
+                
                 return View("Thanks");
             }
             return View(student);

@@ -8,7 +8,7 @@ namespace UIPath.Controllers
     using UIPath.Services;
 
     public class StudentsController : Controller
-    { 
+    {
         private ICodeRepository _codeRepository;
         private IGroupRepository _groupRepository;
         private IStudentRepository _studentRepository;
@@ -39,6 +39,8 @@ namespace UIPath.Controllers
                 TCKN = x.TCKN
 
             }).ToList();
+
+
             return Json(students);
         }
 
@@ -48,7 +50,7 @@ namespace UIPath.Controllers
         }
 
         [HttpGet]
-        public JsonResult _List()
+        public JsonResult _List(int? id)
         {
             var students = _uipathStudentRepository.Students.Select(x => new
             {
@@ -59,12 +61,24 @@ namespace UIPath.Controllers
                 Mail = x.Mail,
                 TCKN = x.TCKN,
                 Brans = x.Brans,
+                Group = x.Group.GroupName,
                 Seans = x.Seans,
                 StartDate = x.CourseStartDate,
                 EndDate = x.CourseEndDate,
-                IsStudent = x.IsStudent
+                IsStudent = x.IsStudent,
+                x.GroupId
             }).ToList();
-            return Json(students);
+
+
+            if (id.HasValue)
+            {
+                return Json(students.Where(x => x.GroupId == id.Value));
+            }
+            else
+            {
+                 return Json(students.Where(x => x.Group == "UIPATH" || x.Group == null));
+            }
+           
         }
 
         public IActionResult Create()
@@ -78,11 +92,11 @@ namespace UIPath.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_studentRepository.Students.Any(x => x.Phone == student.Phone))
+                if (_uipathStudentRepository.Students.Any(x => x.Phone == student.Phone))
                 {
                     return View("Error", "Telefon Numarası Daha Önce Kaydedilmiştir!");
                 }
-                if (_studentRepository.Students.Any(x => x.Mail == student.Mail))
+                if (_uipathStudentRepository.Students.Any(x => x.Mail == student.Mail))
                 {
                     return View("Error", "Mail Adresi Daha Önce Kaydedilmiştir!");
                 }

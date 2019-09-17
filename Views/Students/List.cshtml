@@ -1,5 +1,5 @@
-<div class="row mb-5">
-    <div class="col d-flex justify-content-start">
+<div class="row mb-5 pl-3">
+    <div class="col d-flex justify-content-start ">
         <a href="/Students/Index" class="btn btn-outline-info   mr-2"><i class="fa fa-list"></i> Dersi Devam Eden
             Öğrenciler</a>
         <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter">
@@ -85,11 +85,16 @@
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 <script src="/js/colVis.js"></script>
+<script src="/js/sweetalert2.min.js"></script>
 <script>
     $(document).ready(function () {
+
+        var url = window.location.pathname;
+var id = url.substring(url.lastIndexOf('/') + 1);
+
         $("#example").DataTable({
             ajax: {
-                url: '/Students/_List',
+                url: '/Students/_List/'+id,
                 dataSrc: '',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -101,6 +106,7 @@
                 { "title": "TCKN", data: "TCKN" },
                 { "title": "Telefon", data: "Telefon" },
                 { "title": "Mail", data: "Mail" },
+                { "title": "Grup", data: "Group" },
                 { "title": "Seans", data: "Seans" },
                 { "title": "Zümre", data: "Brans" },
                 { "title": "Başlangıç", data: "StartDate" },
@@ -178,10 +184,7 @@
 
         $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
             var checked = $('.zumre').is(':checked');
-
-            console.log(itemList)
-
-            if (checked && itemList.includes(aData[6])) {
+            if (checked && itemList.includes(aData[7])) {
                 return true;
             }
 
@@ -197,14 +200,51 @@
 
 <script>
     $(document).on("click", ".delete", function () {
-        var id = $(this).data("id");
-        $.ajax({
-            url: "/Students/_Remove/" + id,
-            dataType: "json",
-            type: "post",
-            success: function (result) {
-                var table = $("#example").DataTable();
-                table.ajax.reload();
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success ml-1',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Kayıt Silme Bildirimi?',
+            text: "Kaydı Silmek İstiyormusunuz!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sil',
+            cancelButtonText: 'İptal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+
+                var id = $(this).data("id");
+                $.ajax({
+                    url: "/Students/_Remove/" + id,
+                    dataType: "json",
+                    type: "post",
+                    success: function (result) {
+                        var table = $("#example").DataTable();
+                        table.ajax.reload();
+                    }
+                })
+
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Danışman Silindi',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
             }
         })
     })
@@ -221,6 +261,7 @@
 @section css{
 <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="/css/sweetalert2.min.css" rel="stylesheet" />
 <style>
     .modal-dialog {
         max-width: 1300px !important;

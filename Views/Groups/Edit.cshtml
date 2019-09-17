@@ -1,7 +1,8 @@
 @model Group
+ 
 <form asp-action="Edit">
-    <div class="row">
-    
+    <div class="row p-3">
+
         <div class="col">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Grup Adı" asp-for="GroupName">
@@ -15,15 +16,14 @@
             </div>
         </div>
         <div class="w-100"></div>
-        
-            <div class="col">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Başlangıç" asp-for="StartDate"
-                        maxlength="11">
-                    <span asp-validation-for="StartDate" class="text-danger"></span>
-                </div>
+
+        <div class="col">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Başlangıç" asp-for="StartDate" maxlength="11">
+                <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
-        
+        </div>
+
         <div class="col">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Bitiş" asp-for="EndDate" maxlength="11">
@@ -31,22 +31,44 @@
             </div>
         </div>
 
-           <div class="w-100"></div>
-        <div class="col-6">
+        <div class="w-100"></div>
+        <div class="col">
             <div class="form-group">
-            <select asp-for="ConsultantId" class="form-control" asp-items="@ViewBag.ConsultantId">
-                <option>Danışman Seçiniz</option>
- 
-            </select>
+                <select asp-for="ConsultantId" class="form-control" asp-items="@ViewBag.ConsultantId">
+                    <option>Danışman Seçiniz</option>
+
+                </select>
                 <span asp-validation-for="ConsultantId" class="text-danger"></span>
             </div>
         </div>
+
+        <div class="col">
+            <div class="form-group">
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class='btn btn-outline-success @(Model.Statu.ToString() == "Started" ? "active":"")'>
+                        <i class="fa fa-check"></i>
+                        <input asp-for="Statu" type="radio" autocomplete="off" value="0" id="option1"  > Başlat
+                    </label>
+
+                    <label class='btn btn-outline-warning @(Model.Statu.ToString() == "Waiting" ? "active":"")'>
+                        <i class="fa fa-hourglass"></i>
+                        <input asp-for="Statu" type="radio" autocomplete="off" value="1" id="option2" ) > Bekliyor
+                    </label>
+
+                    <label class='btn btn-outline-danger  @(Model.Statu.ToString() == "Ended" ? "active":"")'>
+                        <i class="fa fa-lock"></i>
+                        <input asp-for="Statu" type="radio" autocomplete="off" value="2" id="option3") > Bitir
+                    </label>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
     <div class="w-100"></div>
 
-    <div class="row mt-4">
+    <div class="row mt-4 p-3">
         <div class="col d-flex justify-content-between">
             <a href="/Groups/Index" class="btn btn-outline-info"><i class="fa fa-list"></i> Liste</a>
             <button type="submit" class="btn btn-outline-dark"> <i class="fa fa-pencil"></i> Kaydet</button>
@@ -55,20 +77,33 @@
 </form>
 
 
- @section css{
+@section css{
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 }
 @section js{
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
- 
+
 <script>
     $(function () {
         $("#StartDate").datepicker({ "dateFormat": "dd/mm/yy" });
         $("#EndDate").datepicker({ "dateFormat": "dd/mm/yy" });
     });
+
+
+    $("input[type=radio]").click(function () {
+
+        $("input[type=radio]")
+            .prop('checked', false)
+            .parent().removeClass('active');
+
+
+        $(this).prop('checked', true)
+            .parent().addClass('active');
+    })
+
 </script>
 
 }

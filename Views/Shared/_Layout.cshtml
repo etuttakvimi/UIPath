@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     @RenderSection("css",false)
-    @RenderSection("js",false)
+ 
     <style>
         body {
             display: flex;
@@ -20,54 +20,56 @@
             background: url(/img/bilge-adam-logo.svg) no-repeat top left;
             background-size: auto 100%;
         }
+
         .container {
             max-width: 90% !important;
         }
-        .table{
 
-       
-    width: 100%!important;
- 
+        .table {
+
+
+            width: 100% !important;
+
         }
     </style>
 
 </head>
 
 <body class="bg-light">
-
-
-
-
-    <div class="container">  
-
- 
-
- <nav class="navbar navbar-expand-lg navbar-light"  style="margin-top:80px">
- 
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-    
-      <li class="nav-item">
-        <a class="nav-link" asp-controller="Groups" asp-action="Index"> Gruplar</a>
-      </li>
-
-        <li class="nav-item">
-        <a class="nav-link" asp-controller="Consultants" asp-action="Index" >Danışmanlar</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" asp-controller="Students" asp-action="List">Öğrenciler</a>
-      </li> 
-    </ul>
-  </div>
-</nav> 
-        <div class="row "> 
+    <div class="container">
+        <div class="row " style="margin-top:80px">
             <div class="col border p-5 shadow-sm p-3 mb-5 bg-white rounded">
+                <nav class="navbar navbar-expand-lg navbar-light">
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+
+                            <li class="nav-item">
+                                <a class="btn btn-outline-info mr-1" asp-controller="Groups" asp-action="Index">
+                                  <i class="fa fa-users"></i>
+                                    Gruplar</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="btn btn-outline-info mr-1" asp-controller="Consultants" asp-action="Index">
+                                          <i class="fa fa-users"></i>
+                                  Danışmanlar</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="btn btn-outline-info" asp-controller="Students" asp-action="List">
+                                         <i class="fa fa-list"></i> Öğrenci Listesi</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
                 @RenderBody()
             </div>
-          
-        </div> 
+
+        </div>
     </div>
+       @RenderSection("js",false)
 </body>
 
 </html>

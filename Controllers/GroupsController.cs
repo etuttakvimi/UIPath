@@ -81,6 +81,12 @@ namespace UIPath.Controllers
         [HttpPost]
         public JsonResult _Remove(int id)
         {
+            var group = _groupRepository.GetById(id);
+            if (group.GroupName == "UIPATH")
+            {
+
+                return Json("Group Silinemez!");
+            }
             bool result = _groupRepository.Delete(id);
             return Json(result);
         }

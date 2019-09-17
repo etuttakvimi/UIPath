@@ -1,5 +1,5 @@
 <div class="row mb-5">
-  
+
     <div class="col d-flex justify-content-end">
         <a href="/Consultants/Create" class="btn btn-outline-success   mr-2"><i class="fa fa-pencil"></i> Yeni Ekle</a>
 
@@ -78,6 +78,7 @@
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 <script src="/js/colVis.js"></script>
+<script src="/js/sweetalert2.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#example").DataTable({
@@ -90,7 +91,7 @@
             },
             columns: [
                 { "title": "Adı", data: "FirstName" },
-                { "title": "Soyadı", data: "LastName" }, 
+                { "title": "Soyadı", data: "LastName" },
                 {
                     "title": "#", "mRender": function (data, type, row) {
 
@@ -128,28 +129,63 @@
                 },
                 {
                     extend: 'pdfHtml5'
-
                 },
                 'colvis'
             ]
         });
 
         $("#example").removeClass().addClass("table table-hover mt-3");
-        $(".dt-button").removeClass().addClass("btn btn-outline-secondary");  
+        $(".dt-button").removeClass().addClass("btn btn-outline-secondary");
     })
 </script>
 
-
 <script>
     $(document).on("click", ".delete", function () {
-        var id = $(this).data("id");
-        $.ajax({
-            url: "/Consultants/_Remove/" + id,
-            dataType: "json",
-            type: "post",
-            success: function (result) {
-                var table = $("#example").DataTable();
-                table.ajax.reload();
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success ml-1',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Kayıt Silme Bildirimi?',
+            text: "Kaydı Silmek İstiyormusunuz!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sil',
+            cancelButtonText: 'İptal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+
+                var id = $(this).data("id");
+                $.ajax({
+                    url: "/Consultants/_Remove/" + id,
+                    dataType: "json",
+                    type: "post",
+                    success: function (result) {
+                        var table = $("#example").DataTable();
+                        table.ajax.reload();
+                    }
+                })
+
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Danışman Silindi',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
             }
         })
     })
@@ -166,6 +202,7 @@
 @section css{
 <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="/css/sweetalert2.min.css" rel="stylesheet" />
 <style>
     .modal-dialog {
         max-width: 1300px !important;
